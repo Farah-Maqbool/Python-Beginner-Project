@@ -1,49 +1,41 @@
-#Movie Ticket Pricw
+#Movie Ticket Price
+# discount function
+def discount(discount_rate,value):
+    return value-((discount_rate/100)*value)
+# value check function
 def movie_ticket(age,day,member):
     week1=["Sunday","Saturday"]
-    week2=["Monday","Tuesday","Wednesday","Thursday","Friday"]
-
-    if age<18 and day in week1 :
-        print("Your ticket price is 1000")
-        if member=="Group":
-            print("Discount 5% So your total amount is 950")
-        elif member=="Family":
-            print("Discount 10% So your total amoount is 900")
-    elif age<18 and day in week2:
-        print("Your ticket price is 1200")
-        if member=="Group":
-            print("Discount 5% So your total amount is 1150")
-        elif member=="Family":
-            print("Discount 10% So your total amoount is 1100")
-    elif age<40 and age>18 and day in week1:
-        print("Your ticket price is 1500")
-        if member=="Group":
-            print("Discount 5% So your total amount is 1450")
-        elif member=="Family":
-            print("Discount 10% So your total amoount is 1400")
-    elif age<40 and age>18 and day in week2:
-        print("Your ticket price is 1700")
-        if member=="Group":
-            print("Discount 5% So your total amount is 1650")
-        elif member=="Family":
-            print("Discount 10% So your total amoount is 1600")
-    elif age>=40 and day in week1:
-        print("Your ticket price is 1900")
-        if member=="Group":
-            print("Discount 5% So your total amount is 1850")
-        elif member=="Family":
-            print("Discount 10% So your total amoount is 1800")
-    elif age>=40 and day in week2:
-        print("Your ticket price is 2000")
-        if member=="Group":
-            print("Discount 5% So your total amount is 1950")
+    value=0
+    if age=="Child":
+        if day in week1:
+            value=500
         else:
-            print("Discount 10% So your total amoount is 1900")
+            value=600
+    elif age=="Adult":
+        if day in week1:
+            value=700
+        else:
+            value=800
+    elif age=="Adult":
+        if day in week1:
+            value=900
+        else:
+            value=1000
+    # Discount for family and group
+    if member=="Family":
+        discount_rate=int(input("Enter Discount rate for family: "))
+        result=discount(discount_rate,value)
+        return result
+    elif member=="Group":
+        discount_rate=int(input("Enter Discount rate for group: "))
+        return discount(discount_rate,value)
 
 
 
-age=int(input("Enter Age: "))
+age=input("Enter (Adult, Child, Senior): ")
+
 day=input("Enter Day: ")
-member=input("Group or family: ")
-# for group 5% discount for family 10%
-movie_ticket(age,day,member)
+member=input("Group or Family: ")
+# for group 5% discount, for family 10%
+result=movie_ticket(age,day,member)
+print(result)
